@@ -1,0 +1,92 @@
+1）// Book 
+public abstract class Book {
+    int pages;
+   double price;
+   public abstract void Info();
+} 
+// Fiction 
+public class Fiction implements Reading {
+   private String applicable_object;
+    int price,pages; 
+    public Fiction(int pages,int price,String applicable_object) {
+        this.pages = pages;
+        this.price = price;
+        this.applicable_object = applicable_object;
+    }
+   public void Info() {
+      // TODO Auto-generated method stub
+      System.out.println("This is a  fiction, which has " + pages + " pages,"+" costs " + price + " yuan, and applicable for " + applicable_object +"." );
+   } 
+} 
+// Journal 
+public class Journal implements Reading {
+   int price,pages;
+   String publishing_time; 
+   public Journal(int pages, int price, String publishing_time) {
+      this.pages = pages;
+           this.price = price;
+           this.publishing_time =publishing_time;
+   }
+   @Override
+   public void Info() {
+      // TODO Auto-generated method stub
+      System.out.println("This is a Journal, which has " + pages + " pages,"+"costs"+price+"yuan,and pubish once every"+publishing_time+".");
+   } 
+} 
+// Magzing 
+public class Magzing implements Reading { 
+   /* (non-Javadoc)
+    * @see book.Reading#Info()
+    */
+   int price,pages;
+   String publish_time; 
+   public Magzing(int i, int j, String string) {
+      // TODO Auto-generated constructor stub
+   }
+   public void Magazing(int price,int pages,String publish_time) {
+      this.pages = pages;
+      this.price = price;
+      this.publish_time = publish_time;
+   }
+   public void Info() {
+      // TODO Auto-generated method stub
+      System.out.println("This is a magazine, which has " + pages + " pages,"+" costs " + price + " yuan, and publish once every " + publish_time +"." );
+   }
+} 
+// Textbook 
+public class Textbook implements Reading { 
+   /* (non-Javadoc)
+    * @see book.Reading#Info()
+    */
+   
+   String applicable_object;
+   int price,pages;
+   public Textbook(int pages, int price, String applicable_object) {
+      this.pages = pages;
+      this.price = price;
+      this.applicable_object = applicable_object;
+   }
+   @Override
+   public void Info() {
+      // TODO Auto-generated method stub
+      System.out.println("This is a textbook, which has " + pages + "pages, " + "costs " + price+ "yuan, and applicable for" + applicable_object + ". ");
+   } 
+} 
+（2）写一个主类 main() 来产生一系列随机的读物，并输出它们的信息。 
+public class Text {
+   public static void main(String[] args) {
+      // TODO Auto-generated method stub
+          Fiction f = new Fiction(199, 12, null);
+         f.Info();
+         Magzing m = new Magzing(3, 30, "6 months");
+         m.Info();
+         Journal j = new Journal(274, 36, "3 years");
+         j.Info();
+         Textbook t = new Textbook(187,19,"students");
+         t.Info();
+   } 
+} 
+（3）编写基础类“读物”的通用接口，并实现相关类的功能。 
+public interface Reading {
+    public void Info();
+} 
