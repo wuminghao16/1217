@@ -1,0 +1,153 @@
+//LoginForm 
+import wechatform.WeChatForm;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class LoginForm extends JFrame {
+    private JPanel panelLogin;
+    private JLabel userLabel;
+    private JTextField userText;
+    private JLabel passwordLabel;
+    private JPasswordField passwordText;
+    private JButton loginButton;
+    private JButton registerButton;
+    public JButton getRegisterButton() {
+        return registerButton;
+    }
+    public LoginForm(){
+        setTitle("Login Form");
+        setSize(280, 160);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panelLogin = new JPanel();
+        panelLogin.setLayout(null);
+        userLabel = new JLabel("User:");
+        userLabel.setBounds(10,20,80,25);
+        panelLogin.add(userLabel);
+        userText = new JTextField(20);
+        userText.setBounds(100,20,165,25);
+        panelLogin.add(userText);
+        passwordLabel = new JLabel("Password:");
+        passwordLabel.setBounds(10,50,80,25);
+        panelLogin.add(passwordLabel);
+        passwordText = new JPasswordField(20);
+        passwordText.setBounds(100,50,165,25);
+        panelLogin.add(passwordText);
+        loginButton = new JButton("login");
+        loginButton.setBounds(10, 100, 80, 25);
+        panelLogin.add(loginButton);
+        registerButton = new JButton("register");
+        registerButton.setBounds(100, 100, 80, 25);
+        panelLogin.add(registerButton);
+        add(panelLogin);
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                WeChatForm weChatForm = new WeChatForm();
+                weChatForm.setFrameWeChatVisible(true);
+                dispose();
+            }
+        });
+    }
+    public void setFrameLoginVisible(Boolean visible){
+        setVisible(visible);
+    }
+} 
+// RegisterForm 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class RegisterForm extends JFrame { 
+    private JPanel panelRegister;
+    private JLabel userLabel;
+    private JTextField userText;
+    private JLabel passwordLabel;
+    private JPasswordField passwordText;
+    private JButton backButton;
+    private JButton registerButton;
+    public JButton getBackButton() {
+        return backButton;
+    }
+    public RegisterForm(){
+        setTitle("Register Form");
+        setSize(280, 160);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panelRegister = new JPanel();
+        panelRegister.setLayout(null);
+        userLabel = new JLabel("User:");
+        userLabel.setBounds(10,20,80,25);
+        panelRegister.add(userLabel);
+        userText = new JTextField(20);
+        userText.setBounds(100,20,165,25);
+        panelRegister.add(userText);
+        passwordLabel = new JLabel("Password:");
+        passwordLabel.setBounds(10,50,80,25);
+        panelRegister.add(passwordLabel);
+        passwordText = new JPasswordField(20);
+        passwordText.setBounds(100,50,165,25);
+        panelRegister.add(passwordText);
+        backButton = new JButton("back");
+        backButton.setBounds(100, 100, 80, 25);
+        panelRegister.add(backButton);
+        registerButton = new JButton("register");
+        registerButton.setBounds(10, 100, 80, 25);
+        panelRegister.add(registerButton);
+        add(panelRegister);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+    }
+    public void setFrameRegisterVisible(Boolean visible){
+        setVisible(visible);
+    }
+} 
+// WeChatForm 
+import javax.swing.*;
+public class WeChatForm extends JFrame {
+    private JPanel panelMain;
+    public WeChatForm(){
+        setTitle("WeChat Form");
+        setSize(300, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panelMain = new JPanel();
+        panelMain.setLayout(null);
+    }
+        public void setFrameWeChatVisible(Boolean visible){
+        setVisible(visible);
+    }
+} 
+// Manage 
+import loginform.LoginForm;
+import registerform.RegisterForm;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class Manage {
+    public static void main(String[] args){
+        final RegisterForm registerForm = new RegisterForm();
+        final LoginForm loginForm = new LoginForm();
+        loginForm.setFrameLoginVisible(true);
+       loginForm.getRegisterButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerForm.setFrameRegisterVisible(true);
+                loginForm.setFrameLoginVisible(false);
+            }
+        });
+        registerForm.getBackButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginForm.setFrameLoginVisible(true);
+                registerForm.dispose();
+            }
+        });
+    }
+} 
+// Tools 
+package utils;
+public class Tools {
+    public boolean login(){
+        return false;
+    }
+} 
+
